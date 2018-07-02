@@ -29,7 +29,7 @@ activitydata <- read.csv("C:/Users/BParisi/Documents/R/Practice Projects/activit
 #Creates the plot of steps per day
 #Average and Median of Steps per Day
 
-```{r}
+```{r echo=TRUE}
 StepsPerDay <- tapply(activitydata$steps, activitydata$date, sum)
 hist(StepsPerDay, xlab = "Number of Steps", main = "Average Steps per Day")
 
@@ -41,7 +41,7 @@ MedPerDay <- median(StepsPerDay, na.rm = TRUE)
 
 #Finds the intervals and plots the line graph 
 # Calculates the mean given the inteval to be used during the imputing
-```{r}
+```{r echo=TRUE}
 StepsPerInterval <- tapply(activitydata$steps, activitydata$interval, mean, na.rm = TRUE)
 plot(as.numeric(names(StepsPerInterval)), 
      StepsPerInterval, xlab = "Interval", ylab = "Steps", 
@@ -54,7 +54,7 @@ StepsPerInterval <- tapply(activitydata$steps, activitydata$interval, mean, na.r
 #Binds the rows split off back together
 #Sums the steps per day and prints the new histogram
 #Finds the mean and median for the imputed data
-```{r}
+```{r echo=TRUE}
 activitydata.split <- split(activitydata, activitydata$interval)
 for(i in 1:288){
         activitydata.split[[i]]$steps[is.na(activitydata.split[[i]]$steps)] <- StepsPerInterval[i]
@@ -96,7 +96,7 @@ StepsPerInterval.weekday <- tapply(activitydata.imputed[activitydata.imputed$day
 
 # Create the Weekday Plot
 
-```{r}
+```{r echo=TRUE}
 plot(as.numeric(names(StepsPerInterval.weekday)),  
      StepsPerInterval.weekday, ylab = " ", xlab = " ",
      type = "l", col ="Red", ylim=c(1,200))
